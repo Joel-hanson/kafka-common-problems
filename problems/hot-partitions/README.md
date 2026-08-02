@@ -115,6 +115,22 @@ When the hot partition is already hurting a broker:
 
 Watch for a day of normal peak traffic before calling it done. Skew that only appears at peak is still a hot partition problem.
 
+## Recreate on your laptop
+
+A Docker Compose demo lives in [`demo/`](demo/). It starts a single KRaft broker, produces skewed keys (`tenant-vip` ≈ 90% of traffic), prints per-partition end offsets, then produces a balanced topic with unique order-id keys for comparison.
+
+```bash
+cd problems/hot-partitions/demo
+chmod +x scripts/*.sh
+./scripts/up.sh
+./scripts/produce-hot.sh
+./scripts/show-partition-sizes.sh
+./scripts/produce-balanced.sh
+./scripts/down.sh
+```
+
+Full walkthrough: [`demo/README.md`](demo/README.md).
+
 ## Related problems
 
 *(Add links as new playbooks land — e.g. consumer lag with even partitions, under-partitioned topics, producer batching skew.)*

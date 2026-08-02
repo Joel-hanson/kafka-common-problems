@@ -4,9 +4,9 @@ Practical playbooks for Kafka issues that show up in production. Each problem is
 
 ## Problems
 
-| Problem | Summary |
-| --- | --- |
-| [Hot partitions](problems/hot-partitions/) | One (or a few) partitions carry most of the traffic, creating lag, broker pressure, and uneven consumer load |
+| Problem | Summary | Demo |
+| --- | --- | --- |
+| [Hot partitions](problems/hot-partitions/) | One (or a few) partitions carry most of the traffic, creating lag, broker pressure, and uneven consumer load | [docker-compose](problems/hot-partitions/demo/) |
 
 ## How to use this repo
 
