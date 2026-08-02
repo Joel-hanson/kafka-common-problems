@@ -1,22 +1,23 @@
 # Kafka Common Problems
 
-Practical playbooks for Kafka issues that show up in production. Each problem is a short set of **symptoms → diagnosis steps → fixes** you can walk through with a customer or your own team. No demo clusters, no throwaway scripts — just the checks and changes that usually resolve the issue.
+Practical playbooks for Kafka issues that show up in production. Each problem covers symptoms, diagnosis, and fixes, plus optional recreate steps you can run locally. Prefer documented CLI commands over wrapper scripts. Keep a `demo/` folder only for Compose or similar fixtures.
 
 ## Problems
 
-| Problem | Summary | Demo |
+| Problem | Summary | Recreate |
 | --- | --- | --- |
-| [Hot partitions](problems/hot-partitions/) | One (or a few) partitions carry most of the traffic, creating lag, broker pressure, and uneven consumer load | [docker-compose](problems/hot-partitions/demo/) |
+| [Hot partitions](problems/hot-partitions/) | One (or a few) partitions carry most of the traffic, creating lag, broker pressure, and uneven consumer load | [steps](problems/hot-partitions/demo/) |
 
 ## How to use this repo
 
 1. Start from the symptoms table in a problem folder.
-2. Work the diagnosis checklist in order — stop when you have a clear root cause.
+2. Work the diagnosis checklist in order. Stop when you have a clear root cause.
 3. Apply the matching fix. Prefer the smallest change that rebalances load.
+4. Optionally walk the recreate steps to see the failure mode on a laptop.
 
 ## Contributing a new problem
 
-Copy [`templates/PROBLEM.md`](templates/PROBLEM.md) into `problems/<slug>/README.md` and fill it in. Keep the tone operational: what to look at, what to change, and what to verify afterward.
+Copy [`templates/PROBLEM.md`](templates/PROBLEM.md) into `problems/<slug>/README.md` and fill it in. Keep the tone operational: what to look at, what to change, and what to verify afterward. If you add a local recreate path, write the steps as numbered commands. Avoid shell wrappers unless something cannot be expressed inline.
 
 ## Related
 

@@ -21,19 +21,19 @@ Short explanation of the mechanism. Keep it concrete.
 
 Work these in order. Stop when the root cause is clear.
 
-1. **Check …** — what to look at and what “bad” looks like
-2. **Check …**
-3. **Check …**
+1. Check … (what to look at and what "bad" looks like)
+2. Check …
+3. Check …
 
 ## Fixes
 
 Match the fix to the cause you found.
 
-### Fix A — when …
+### Fix A: when …
 
 Steps the customer can take.
 
-### Fix B — when …
+### Fix B: when …
 
 Steps the customer can take.
 
@@ -41,6 +41,14 @@ Steps the customer can take.
 
 - How to confirm the imbalance / failure is gone
 - What to watch for the next few hours or days
+
+## Recreate
+
+Numbered steps a reader can run locally (or against a lab cluster) to see the problem. Prefer plain CLI / Compose commands over wrapper scripts. Keep a `demo/` folder only when you need a compose file or similar fixtures. Document the steps in `demo/README.md`, or inline here if short.
+
+1. …
+2. …
+3. Expected signal: …
 
 ## Related problems
 
