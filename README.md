@@ -7,6 +7,7 @@ Practical playbooks for Kafka issues that show up in production. Each problem co
 | Problem | Summary | Recreate |
 | --- | --- | --- |
 | [Hot partitions](problems/hot-partitions/) | One (or a few) partitions carry most of the traffic, creating lag, broker pressure, and uneven consumer load | [steps](problems/hot-partitions/demo/) |
+| [Stuck replicas](problems/stuck-replicas/) | A partition stays under-replicated: followers never rejoin ISR after epoch / log divergence | [steps](problems/stuck-replicas/demo/) |
 
 ## How to use this repo
 
