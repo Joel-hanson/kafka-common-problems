@@ -7,6 +7,7 @@ A partition keeps a leader but one or more followers never rejoin the ISR. Repli
 | Severity | High when it hits busy user partitions or `__consumer_offsets` / `__transaction_state` |
 | Typical surface | Brokers (ISR, replica fetchers), consumers (join / commit), transactional producers |
 | Related configs | Replication factor, `min.insync.replicas`, `unclean.leader.election.enable`, on-disk `leader-epoch-checkpoint` |
+| Related issue | [KAFKA-13077](https://issues.apache.org/jira/browse/KAFKA-13077) (open; no KIP) |
 
 ## Symptoms
 
@@ -283,6 +284,12 @@ Three-broker KRaft Compose lab, disk archives, induce via a bad `leader-epoch-ch
 Summary: start three brokers, produce to delete and compact topics, rewrite one replica's epoch checkpoint, confirm sustained under-replication and the fetch error chain, then recover with a broker restart or by deleting only that replica's partition directory.
 
 Session notes, negative trials, debugging tips, and copy/paste commands: [`INVESTIGATION.md`](INVESTIGATION.md) (jump to "Commands we used constantly").
+
+## Related Kafka issue
+
+[KAFKA-13077](https://issues.apache.org/jira/browse/KAFKA-13077) — *Replication failing after unclean shutdown of ZK and all brokers*. Same operator surface as this playbook: a messy multi-broker (and ZooKeeper) restart, truncate plus a non-monotonic high watermark on `__transaction_state`, ISR stuck on one broker, and new replicas that fail the same way. The ticket is still Open. There is no KIP for a protocol fix.
+
+That report is the production analogue. The lab here did not get a lasting stuck replica from a mass kill alone; we needed on-disk divergence (a bad `leader-epoch-checkpoint`) to keep a follower out of ISR.
 
 ## Related problems
 

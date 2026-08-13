@@ -2,7 +2,7 @@
 
 Run `run-20260806-110124` · 2026-08-06 · three-broker Kafka 3.9.1 KRaft lab under `demo/`.
 
-We wanted a local story we could trust: can you get a partition stuck under-replicated, see why from logs and disk, and fix it — without starting from someone else's runbook? Ticket notes stayed on the shelf until we had our own picture.
+We wanted a local story we could trust: can you get a partition stuck under-replicated, see why from logs and disk, and fix it — without starting from someone else's runbook? Ticket notes ([KAFKA-13077](https://issues.apache.org/jira/browse/KAFKA-13077)) stayed on the shelf until we had our own picture. That JIRA is still Open; there is no KIP.
 
 Raw scratch notes: [`demo/archives/run-20260806-110124/NOTES.md`](demo/archives/run-20260806-110124/NOTES.md).
 
