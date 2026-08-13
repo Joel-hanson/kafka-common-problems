@@ -1,0 +1,4 @@
+Topic: events-compact	TopicId: JdVMQ8URTVWf0Or0tltebg	PartitionCount: 3	ReplicationFactor: 3	Configs: min.insync.replicas=2,cleanup.policy=compact,segment.bytes=1048576,min.cleanable.dirty.ratio=0.01
+	Topic: events-compact	Partition: 0	Leader: 3	Replicas: 1,2,3	Isr: 3,2	Elr: 	LastKnownElr: 
+	Topic: events-compact	Partition: 1	Leader: 3	Replicas: 2,3,1	Isr: 3,2,1	Elr: 	LastKnownElr: 
+	Topic: events-compact	Partition: 2	Leader: 3	Replicas: 3,1,2	Isr: 3,2,1	Elr: 	LastKnownElr: 

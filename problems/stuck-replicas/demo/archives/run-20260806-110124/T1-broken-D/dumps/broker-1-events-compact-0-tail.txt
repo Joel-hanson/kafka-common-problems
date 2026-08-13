@@ -1,0 +1,2 @@
+Dumping /data/00000000000000000000.log
+Log starting offset: 0

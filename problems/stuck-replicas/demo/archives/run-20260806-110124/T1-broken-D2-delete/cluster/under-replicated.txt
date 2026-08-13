@@ -1,0 +1,1 @@
+	Topic: events-delete	Partition: 0	Leader: 2	Replicas: 3,1,2	Isr: 2,1	Elr: 	LastKnownElr: 

@@ -1,0 +1,5 @@
+
+GROUP           TOPIC           PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID     HOST            CLIENT-ID
+lab-group-a     events-delete   0          2142            2351            209             -               -               -
+lab-group-a     events-delete   1          2210            2382            172             -               -               -
+lab-group-a     events-delete   2          2161            2349            188             -               -               -

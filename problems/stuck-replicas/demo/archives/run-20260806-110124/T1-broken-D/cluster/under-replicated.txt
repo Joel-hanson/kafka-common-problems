@@ -1,0 +1,1 @@
+	Topic: events-compact	Partition: 0	Leader: 3	Replicas: 1,2,3	Isr: 3,2	Elr: 	LastKnownElr: 
