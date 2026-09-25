@@ -17,9 +17,36 @@ Commands below use `docker-compose`. Swap in `docker compose` if that's what you
 
 | Path | Role |
 | --- | --- |
-| `docker-compose.yml` | brokers `kafka-1` / `kafka-2` / `kafka-3` |
+| `docker-compose.yml` | KRaft lab: brokers `kafka-1` / `kafka-2` / `kafka-3` (`apache/kafka:3.9.1`) |
+| `docker-compose.zk.yml` | ZK lab: `zookeeper` + `kafka-zk-1..3` (`apache/kafka:3.7.0`) |
+| `fsync-crash-lab/` | **Real** #14242/#16541 OS-crash LEC test (Ubuntu VM + `sysrq-b`; not LEC hand-edit) |
+| `zk/` | ZK-mode `server-*.properties` + `zookeeper.properties` |
 | `archives/` | your snapshots (gitignored); create per run |
 | Log dirs inside containers | `/var/lib/kafka/data` |
+
+### ZooKeeper-mode lab (compare natural repro)
+
+The official `apache/kafka` image is KRaft-oriented; `docker-compose.zk.yml` overrides the command and uses the ZK scripts/configs still present in **3.7.0**. Host ports are `29292` / `39292` / `49292` so they do not clash with the KRaft compose.
+
+```bash
+cd problems/stuck-replicas/demo
+docker-compose -f docker-compose.zk.yml up -d
+
+docker exec kafka-zk-1 \
+  /opt/kafka/bin/kafka-broker-api-versions.sh \
+  --bootstrap-server kafka-zk-1:19092
+```
+
+Inside containers bootstrap is `kafka-zk-1:19092` (or comma-separated peers). From the host: `localhost:29292`.
+
+Re-run the same perturbations as §7, plus **kill brokers and ZooKeeper together** (closest to KAFKA-13077). Example:
+
+```bash
+docker kill kafka-zk-1 kafka-zk-2 kafka-zk-3 zookeeper
+docker-compose -f docker-compose.zk.yml start
+```
+
+Tear down: `docker-compose -f docker-compose.zk.yml down -v`.
 
 Bootstrap:
 
