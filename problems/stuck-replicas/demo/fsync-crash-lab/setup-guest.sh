@@ -54,6 +54,17 @@ transaction.state.log.min.isr=1
 default.replication.factor=1
 min.insync.replicas=1
 group.initial.rebalance.delay.ms=0
+
+# ---- LEC write pressure (fsync-crash-lab) --------------------------------
+# Tiny segments: broker rolls a new segment every 64 KB or 5 s.
+# Each roll calls truncateFromEnd on the new empty segment → LEC write.
+log.segment.bytes=65536
+log.roll.ms=5000
+# Flush every 50 messages instead of relying purely on OS writeback.
+# This keeps dirty LEC pages cycling through the page cache rapidly,
+# maximising the chance that a hard crash lands mid-write.
+log.flush.interval.messages=50
+log.flush.interval.ms=500
 EOF
 chown "${USER_NAME}:${USER_NAME}" /etc/kafka-server.properties
 
